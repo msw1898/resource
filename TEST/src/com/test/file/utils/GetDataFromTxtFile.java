@@ -18,9 +18,9 @@ public class GetDataFromTxtFile {
     public static DataVO readTxtFile(DataVO dataVO) {
         try {
             File file = new File(dataVO.getResidAllPath());
-            if (file.isFile() && file.exists()) { //åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
+            if (file.isFile() && file.exists()) { //ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
                 InputStreamReader read = new InputStreamReader(
-                        new FileInputStream(file), ConsUtil.UTF_16);//è€ƒè™‘åˆ°ç¼–ç æ ¼å¼
+                        new FileInputStream(file), ConsUtil.UTF_16);//¿¼ÂÇµ½±àÂë¸ñÊ½
                 BufferedReader bufferedReader = new BufferedReader(read);
                 String lineTxt = null;
                 while ((lineTxt = bufferedReader.readLine()) != null) {
@@ -28,10 +28,10 @@ public class GetDataFromTxtFile {
                 }
                 read.close();
             } else {
-                System.out.println("æ‰¾ä¸åˆ°æŒ‡å®šçš„æ–‡ä»¶");
+                System.out.println("ÕÒ²»µ½Ö¸¶¨µÄÎÄ¼ş");
             }
         } catch (Exception e) {
-            System.out.println("è¯»å–æ–‡ä»¶å†…å®¹å‡ºé”™");
+            System.out.println("¶ÁÈ¡ÎÄ¼şÄÚÈİ³ö´í");
             e.printStackTrace();
         }
         return dataVO;

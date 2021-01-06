@@ -28,10 +28,10 @@ public class SearchFileNameKeyword {
         if (subFolders != null) {
             for (File file : subFolders) {
                 if (file.isFile()) {
-                    // å¦‚æœæ˜¯æ–‡ä»¶åˆ™å°†æ–‡ä»¶æ·»åŠ åˆ°ç»“æœåˆ—è¡¨ä¸­
+                    // Èç¹ûÊÇÎÄ¼şÔò½«ÎÄ¼şÌí¼Óµ½½á¹ûÁĞ±íÖĞ
                     result.add(file);
                 } else {
-                    // å¦‚æœæ˜¯æ–‡ä»¶å¤¹ï¼Œåˆ™é€’å½’è°ƒç”¨æœ¬æ–¹æ³•ï¼Œç„¶åæŠŠæ‰€æœ‰çš„æ–‡ä»¶åŠ åˆ°ç»“æœåˆ—è¡¨ä¸­
+                    // Èç¹ûÊÇÎÄ¼ş¼Ğ£¬Ôòµİ¹éµ÷ÓÃ±¾·½·¨£¬È»ºó°ÑËùÓĞµÄÎÄ¼ş¼Óµ½½á¹ûÁĞ±íÖĞ
                     result.addAll(searchFiles(file, keyword));
                 }
             }

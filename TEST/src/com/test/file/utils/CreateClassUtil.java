@@ -53,11 +53,11 @@ public class CreateClassUtil {
         content.append("} \r\n");
         String newFolderPath = MakeFileUtil.createFileFolder(dataVO.getFilePath(), dataVO.getFileName());
         writeTxt(content.toString(), newFolderPath+"//"+dataVO.getFileName()+".java");
-        System.out.println("ç”Ÿæˆ"+dataVO.getFileName()+".java"+"æˆåŠŸï¼");
+        System.out.println("Éú³É"+dataVO.getFileName()+".java"+"³É¹¦£¡");
     }
 
     /**
-     * å°†ç”Ÿæˆçš„å­—æ®µå±æ€§å†™å…¥txt
+     * ½«Éú³ÉµÄ×Ö¶ÎÊôĞÔĞ´Èëtxt
      *
      * @param content
      * @param filePath

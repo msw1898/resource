@@ -14,42 +14,42 @@ public class SplitFile {
         FileInputStream fis = new FileInputStream(fileInfo.getFileFolderPath()+"/"+fileInfo.getFileName()+fileInfo.getFileType());
         FileChannel inputChannel = fis.getChannel();
         long fileSize = inputChannel.size();
-        //å¹³å‡å€¼
+        //Æ½¾ùÖµ
         long average = fileSize / fileCount;
-        //ç¼“å­˜å—å¤§å°ï¼Œè‡ªè¡Œè°ƒæ•´
+        //»º´æ¿é´óĞ¡£¬×ÔĞĞµ÷Õû
         long bufferSize = 200;
-        // ç”³è¯·ä¸€ä¸ªç¼“å­˜åŒº
+        // ÉêÇëÒ»¸ö»º´æÇø
         ByteBuffer byteBuffer = ByteBuffer.allocate(Integer.valueOf(bufferSize + ""));
-        //å­æ–‡ä»¶å¼€å§‹ä½ç½®
+        //×ÓÎÄ¼ş¿ªÊ¼Î»ÖÃ
         long startPosition = 0;
-        //å­æ–‡ä»¶ç»“æŸä½ç½®
+        //×ÓÎÄ¼ş½áÊøÎ»ÖÃ
         long endPosition = average < bufferSize ? 0 : average - bufferSize;
         for (int i = 0; i < fileCount; i++) {
             if (i + 1 != fileCount) {
-                // è¯»å–æ•°æ®
+                // ¶ÁÈ¡Êı¾İ
                 int read = inputChannel.read(byteBuffer, endPosition);
                 readW:
                 while (read != -1) {
-                    byteBuffer.flip();//åˆ‡æ¢è¯»æ¨¡å¼
+                    byteBuffer.flip();//ÇĞ»»¶ÁÄ£Ê½
                     byte[] array = byteBuffer.array();
                     for (int j = 0; j < array.length; j++) {
                         byte b = array[j];
-                        //åˆ¤æ–­\n\r
+                        //ÅĞ¶Ï\n\r
                         if (b == 10 || b == 13) {
                             endPosition += j;
                             break readW;
                         }
                     }
                     endPosition += bufferSize;
-                    byteBuffer.clear(); //é‡ç½®ç¼“å­˜å—æŒ‡é’ˆ
+                    byteBuffer.clear(); //ÖØÖÃ»º´æ¿éÖ¸Õë
                     read = inputChannel.read(byteBuffer, endPosition);
                 }
             } else {
-                endPosition = fileSize; //æœ€åä¸€ä¸ªæ–‡ä»¶ç›´æ¥æŒ‡å‘æ–‡ä»¶æœ«å°¾
+                endPosition = fileSize; //×îºóÒ»¸öÎÄ¼şÖ±½ÓÖ¸ÏòÎÄ¼şÄ©Î²
             }
             FileOutputStream fos = new FileOutputStream(fileInfo.getFileFolderPath()+"/"+flag+"/"+fileInfo.getFileName() + (i + 1) + fileInfo.getFileType());
             FileChannel outputChannel = fos.getChannel();
-            inputChannel.transferTo(startPosition, endPosition - startPosition, outputChannel);//é€šé“ä¼ è¾“æ–‡ä»¶æ•°æ®
+            inputChannel.transferTo(startPosition, endPosition - startPosition, outputChannel);//Í¨µÀ´«ÊäÎÄ¼şÊı¾İ
             outputChannel.close();
             fos.close();
             startPosition = endPosition + 1;
@@ -72,7 +72,7 @@ public class SplitFile {
         splitFile(fileInfo, fileCount,ConsUtil.FLAG);
         long endTime = System.currentTimeMillis();
         System.out.println("end================================" );
-        System.out.println("è€—è´¹æ—¶é—´ï¼š " + (endTime - startTime) + " ms");
+        System.out.println("ºÄ·ÑÊ±¼ä£º " + (endTime - startTime) + " ms");
     }
 
 }

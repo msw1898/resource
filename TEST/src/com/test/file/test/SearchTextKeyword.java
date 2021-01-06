@@ -10,12 +10,12 @@ import java.io.UnsupportedEncodingException;
 
 public class SearchTextKeyword {
     /**
-     * è®¡ç®—æ–‡ä»¶æ•°é‡
+     * ¼ÆËãÎÄ¼şÊıÁ¿
      */
     private static int count = 0;
     private static String keyword=ConsUtil.KEYWORD;
     private static String charset =ConsUtil.CHARSET;
-    //å…³é”®å­—
+    //¹Ø¼ü×Ö
     public static String keyWords;
 
     static {
@@ -26,7 +26,7 @@ public class SearchTextKeyword {
         }
     }
 
-    //æœç´¢åæŸ¥è¯¢åˆ°çš„æ–‡ä»¶è·¯å¾„æ±‡æ€»æ–‡ä»¶åœ°å€
+    //ËÑË÷ºó²éÑ¯µ½µÄÎÄ¼şÂ·¾¶»ã×ÜÎÄ¼şµØÖ·
     public static String searchedFilePath = ConsUtil.FILEFOLDERPATH+ ConsUtil.SEPARATOR+"test"+ConsUtil.FILETYPE;
     public static String path = ConsUtil.FILEFOLDERPATH + ConsUtil.SEPARATOR+ConsUtil.FLAG;
 
@@ -35,7 +35,7 @@ public class SearchTextKeyword {
     public static FileOutputStream fos = null;
 
     /**
-     * é€’å½’æœç´¢æ–‡ä»¶
+     * µİ¹éËÑË÷ÎÄ¼ş
      * @param files
      */
     public static void getFiles(File[] files) {

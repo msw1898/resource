@@ -30,7 +30,7 @@ public class CreateBmfUtil {
         uuid = UUID.randomUUID();
         dataVO.setReferenceId(uuid.toString());
 
-        // 1ã€åˆ›å»ºdocumentå¯¹è±¡
+        // 1¡¢´´½¨document¶ÔÏó
         Document document = DocumentHelper.createDocument();
         setBfmFileContent(document, dataVO);
         writeBmfFile(document, dataVO);
@@ -41,15 +41,15 @@ public class CreateBmfUtil {
      * @param dataVO
      */
     public static void setBfmFileContent(Document document, DataVO dataVO) {
-        // 2ã€åˆ›å»ºæ ¹èŠ‚ç‚¹
+        // 2¡¢´´½¨¸ù½Úµã
         Element component = document.addElement("component");
         setComponentProp(component, dataVO);
 
-        // 4ã€ç”Ÿæˆå­èŠ‚ç‚¹åŠå­èŠ‚ç‚¹å†…å®¹
+        // 4¡¢Éú³É×Ó½Úµã¼°×Ó½ÚµãÄÚÈİ
         Element celllist = component.addElement("celllist");
         Element entity = celllist.addElement("entity");
         setEntityProp(entity, dataVO);
-        //è®¾ç½®å…ƒæ•°æ®å…·ä½“å±æ€§å€¼
+        //ÉèÖÃÔªÊı¾İ¾ßÌåÊôĞÔÖµ
         Element attributelist = entity.addElement("attributelist");
         for (int i = 0; i < dataVO.getBodyVOs().size(); i++) {
             Element attribute = attributelist.addElement("attribute");
@@ -57,7 +57,7 @@ public class CreateBmfUtil {
         }
         entity.addElement("operationlist");
         setBusiInterface(entity, dataVO);
-        //å‚ç…§
+        //²ÎÕÕ
         Element canzhaolist = entity.addElement("canzhaolist");
         if ("Y".equals(dataVO.getParentVO().getIsReference())) {
             Element canzhao = entity.addElement("canzhao");
@@ -79,7 +79,7 @@ public class CreateBmfUtil {
         setbusiitfconnection(busiitfconnection, dataVO);
         busiitfconnection.addElement("points");
 
-        // å¼•ç”¨
+        // ÒıÓÃ
         Element refdepends = component.addElement("refdepends");
         Element dependfile = refdepends.addElement("dependfile");
         dependfile.addAttribute("entityid", "6c8722b9-911a-489b-8d0d-18bd3734fcf6");
@@ -131,21 +131,21 @@ public class CreateBmfUtil {
      * @param dataVO
      */
     public static void setComponentProp(Element component, DataVO dataVO) {
-        // 3ã€å±æ€§
-        component.addAttribute("conRouterType", "æ‰‹åŠ¨");
+        // 3¡¢ÊôĞÔ
+        component.addAttribute("conRouterType", "ÊÖ¶¯");
         component.addAttribute("createIndustry", "0");
         component.addAttribute("createTime", dataVO.getCreateTime());
         component.addAttribute("creator", "");
         component.addAttribute("description", "");
         component.addAttribute("displayName", dataVO.getParentVO().getTableDisplayName());
         component.addAttribute("fromSourceBmf", "true");
-        component.addAttribute("gencodestyle", "NCä¼ ç»Ÿæ ·å¼");
+        component.addAttribute("gencodestyle", "NC´«Í³ÑùÊ½");
         component.addAttribute("help", "");
         component.addAttribute("id", dataVO.getComponentID());
         component.addAttribute("industry", "0");
         component.addAttribute("industryChanged", "false");
         component.addAttribute("industryIncrease", "false");
-        component.addAttribute("industryName", "åŸºç¡€è¡Œä¸š");
+        component.addAttribute("industryName", "»ù´¡ĞĞÒµ");
         component.addAttribute("isSource", "false");
         component.addAttribute("isbizmodel", "false");
         component.addAttribute("mainEntity", dataVO.getParentVO().getClassID());
@@ -241,56 +241,56 @@ public class CreateBmfUtil {
             if ("pk_group".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "3b6dd171-2900-47f3-bfbe-41e4483a2a65");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "æ‰€å±é›†å›¢");
-                attribute.addAttribute("refModelName", "é›†å›¢");
-                attribute.addAttribute("typeDisplayName", "é›†å›¢");
+                attribute.addAttribute("displayName", "ËùÊô¼¯ÍÅ");
+                attribute.addAttribute("refModelName", "¼¯ÍÅ");
+                attribute.addAttribute("typeDisplayName", "¼¯ÍÅ");
                 attribute.addAttribute("typeName", "group");
             } else if ("pk_org".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "985be8a4-3a36-4778-8afe-2d8ed3902659");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "æ‰€å±ç»„ç»‡");
-                attribute.addAttribute("refModelName", "ä¸šåŠ¡å•å…ƒ");
-                attribute.addAttribute("typeDisplayName", "ç»„ç»‡");
+                attribute.addAttribute("displayName", "ËùÊô×éÖ¯");
+                attribute.addAttribute("refModelName", "ÒµÎñµ¥Ôª");
+                attribute.addAttribute("typeDisplayName", "×éÖ¯");
                 attribute.addAttribute("typeName", "org");
             } else if ("pk_tax_org".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "985be8a4-3a36-4778-8afe-2d8ed3902659");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "çº³ç¨ç”³æŠ¥ç»„ç»‡");
-                attribute.addAttribute("refModelName", "ä¸šåŠ¡å•å…ƒ");
-                attribute.addAttribute("typeDisplayName", "ç»„ç»‡");
+                attribute.addAttribute("displayName", "ÄÉË°Éê±¨×éÖ¯");
+                attribute.addAttribute("refModelName", "ÒµÎñµ¥Ôª");
+                attribute.addAttribute("typeDisplayName", "×éÖ¯");
                 attribute.addAttribute("typeName", "org");
             } else if ("pk_tax_class".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "4ca7caca-736b-407c-95ed-beca3d0d8858");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "æŠ¥ç¨æ–¹æ¡ˆä¸»é”®");
+                attribute.addAttribute("displayName", "±¨Ë°·½°¸Ö÷¼ü");
                 attribute.addAttribute("refModelName", "");
-                attribute.addAttribute("typeDisplayName", "ä¸ªäººæ‰€å¾—ç¨ç”³æŠ¥è®¾ç½®å­è¡¨");
+                attribute.addAttribute("typeDisplayName", "¸öÈËËùµÃË°Éê±¨ÉèÖÃ×Ó±í");
                 attribute.addAttribute("typeName", "wa_tax_class");
             } else if ("pk_psndoc".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "218971f0-e5dc-408b-9a32-56529dddd4db");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "äººå‘˜ä¸»é”®");
-                attribute.addAttribute("refModelName", "HRäººå‘˜");
-                attribute.addAttribute("typeDisplayName", "äººå‘˜åŸºæœ¬ä¿¡æ¯");
+                attribute.addAttribute("displayName", "ÈËÔ±Ö÷¼ü");
+                attribute.addAttribute("refModelName", "HRÈËÔ±");
+                attribute.addAttribute("typeDisplayName", "ÈËÔ±»ù±¾ĞÅÏ¢");
                 attribute.addAttribute("typeName", "bd_psndoc");
             } else if ("pk_psnjob".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "8df12441-6f47-4ebf-ad14-0dcad84353b9");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "ä»»èŒè®°å½•ä¸»é”®");
+                attribute.addAttribute("displayName", "ÈÎÖ°¼ÇÂ¼Ö÷¼ü");
                 attribute.addAttribute("refModelName", "");
-                attribute.addAttribute("typeDisplayName", "äººå‘˜å·¥ä½œè®°å½•");
+                attribute.addAttribute("typeDisplayName", "ÈËÔ±¹¤×÷¼ÇÂ¼");
                 attribute.addAttribute("typeName", "hi_psnjob");
             } else if ("creator".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "f6f9a473-56c0-432f-8bc7-fbf8fde54fee");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "åˆ›å»ºäºº");
-                attribute.addAttribute("refModelName", "ç”¨æˆ·");
-                attribute.addAttribute("typeDisplayName", "ç”¨æˆ·");
+                attribute.addAttribute("displayName", "´´½¨ÈË");
+                attribute.addAttribute("refModelName", "ÓÃ»§");
+                attribute.addAttribute("typeDisplayName", "ÓÃ»§");
                 attribute.addAttribute("typeName", "user");
             } else if ("creationtime".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "BS000010000100001034");
                 attribute.addAttribute("dataTypeStyle", "SINGLE");
-                attribute.addAttribute("displayName", "åˆ›å»ºæ—¶é—´");
+                attribute.addAttribute("displayName", "´´½¨Ê±¼ä");
                 attribute.addAttribute("typeDisplayName", "UFDateTime");
                 attribute.addAttribute("typeName", "UFDateTime");
                 attribute.addAttribute("dbtype", "char");
@@ -298,14 +298,14 @@ public class CreateBmfUtil {
             } else if ("modifier".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "f6f9a473-56c0-432f-8bc7-fbf8fde54fee");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "ä¿®æ”¹äºº");
-                attribute.addAttribute("refModelName", "ç”¨æˆ·");
-                attribute.addAttribute("typeDisplayName", "ç”¨æˆ·");
+                attribute.addAttribute("displayName", "ĞŞ¸ÄÈË");
+                attribute.addAttribute("refModelName", "ÓÃ»§");
+                attribute.addAttribute("typeDisplayName", "ÓÃ»§");
                 attribute.addAttribute("typeName", "user");
             } else if ("modifiedtime".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "BS000010000100001034");
                 attribute.addAttribute("dataTypeStyle", "SINGLE");
-                attribute.addAttribute("displayName", "ä¿®æ”¹æ—¶é—´");
+                attribute.addAttribute("displayName", "ĞŞ¸ÄÊ±¼ä");
                 attribute.addAttribute("typeDisplayName", "UFDateTime");
                 attribute.addAttribute("typeName", "UFDateTime");
                 attribute.addAttribute("dbtype", "char");
@@ -469,20 +469,20 @@ public class CreateBmfUtil {
     public static void writeBmfFile(Document document, DataVO dataVO) {
         try {
             OutputFormat format = OutputFormat.createPrettyPrint();
-            // è®¾ç½®ç¼–ç æ ¼å¼
+            // ÉèÖÃ±àÂë¸ñÊ½
             format.setEncoding("UTF-8");
-            // 6ã€ç”Ÿæˆxmlæ–‡ä»¶
+            // 6¡¢Éú³ÉxmlÎÄ¼ş
             String newFolderPath = MakeFileUtil.createFileFolder(dataVO.getFilePath(), dataVO.getFileName());
             File file = new File(newFolderPath + "//" + dataVO.getFileName() + ".bmf");
             XMLWriter writer = new XMLWriter(new FileOutputStream(file), format);
-            // è®¾ç½®æ˜¯å¦è½¬ä¹‰ï¼Œé»˜è®¤ä½¿ç”¨è½¬ä¹‰å­—ç¬¦
+            // ÉèÖÃÊÇ·ñ×ªÒå£¬Ä¬ÈÏÊ¹ÓÃ×ªÒå×Ö·û
             writer.setEscapeText(false);
             writer.write(document);
             writer.close();
-            System.out.println("ç”Ÿæˆ" + dataVO.getFileName() + ".bmfæˆåŠŸï¼");
+            System.out.println("Éú³É" + dataVO.getFileName() + ".bmf³É¹¦£¡");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ç”Ÿæˆ" + dataVO.getFileName() + ".bmfå¤±è´¥ï¼");
+            System.out.println("Éú³É" + dataVO.getFileName() + ".bmfÊ§°Ü£¡");
         }
     }
 

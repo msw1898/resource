@@ -1,17 +1,17 @@
-package nccloud.web.hrwa.bankoffer.action;
+package com.test;
 
 import java.io.UnsupportedEncodingException;
 
 public class TestMain {
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String name="涓師閾惰鑲′唤鏈夐檺鍏徃鍟嗕笜寮�鍙戝尯鏀";
+        String name="中原银行股份有限公司商丘开发区支行";
         int lenght=getStrLength(name);
         System.out.println(name+":   "+lenght);
         boolean flag=validateStrByLength(lenght, 50);
         System.out.println(name+":   "+flag);
-        System.out.println("UTF-8缂栫爜闀垮害:"+name.getBytes("UTF-8").length);
-        System.out.println("GBK缂栫爜闀垮害:"+name.getBytes("GBK").length);
-        System.out.println("GB2312缂栫爜闀垮害:"+name.getBytes("GB2312").length);
+        System.out.println("UTF-8编码长度:"+name.getBytes("UTF-8").length);
+        System.out.println("GBK编码长度:"+name.getBytes("GBK").length);
+        System.out.println("GB2312编码长度:"+name.getBytes("GB2312").length);
     }
     private static int getStrLength(String strParameter){
         int temp_int = 0;

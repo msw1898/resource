@@ -44,15 +44,15 @@ public class GetDataFromExcelFile {
         String cellData = null;
         wb = createWorkbook(filePath);
         if (wb != null) {
-            //ç”¨æ¥å­˜æ”¾è¡¨ä¸­æ•°æ®
+            //ÓÃÀ´´æ·Å±íÖĞÊı¾İ
             list = new ArrayList<BodyVO>();
-            //è·å–ç¬¬ä¸€ä¸ªsheet
+            //»ñÈ¡µÚÒ»¸ösheet
             sheet = wb.getSheetAt(0);
-            //è·å–æœ€å¤§è¡Œæ•°
+            //»ñÈ¡×î´óĞĞÊı
             int rownum = sheet.getPhysicalNumberOfRows();
-            //è·å–ç¬¬ä¸€è¡Œ
+            //»ñÈ¡µÚÒ»ĞĞ
             row = sheet.getRow(0);
-            //è·å–æœ€å¤§åˆ—æ•°
+            //»ñÈ¡×î´óÁĞÊı
             int colnum = row.getPhysicalNumberOfCells();
             dataVO.setParentVO(getMainVOData(sheet));
             dataVO.setBodyVOs(getBodyVODatas(sheet, rownum));
@@ -90,7 +90,7 @@ public class GetDataFromExcelFile {
     }
 
     /**
-     * è·å–excelå•å…ƒæ ¼çš„å€¼
+     * »ñÈ¡excelµ¥Ôª¸ñµÄÖµ
      *
      * @param cell
      * @return
@@ -240,13 +240,13 @@ public class GetDataFromExcelFile {
         Row row = null;
         wb = createWorkbook(filePath);
         if (wb != null) {
-            //è·å–ç¬¬ä¸€ä¸ªsheet
+            //»ñÈ¡µÚÒ»¸ösheet
             sheet = wb.getSheetAt(0);
-            //è·å–æœ€å¤§è¡Œæ•°
+            //»ñÈ¡×î´óĞĞÊı
             int rownum = sheet.getPhysicalNumberOfRows();
-            //è·å–ç¬¬ä¸€è¡Œ
+            //»ñÈ¡µÚÒ»ĞĞ
             row = sheet.getRow(0);
-            //è·å–æœ€å¤§åˆ—æ•°
+            //»ñÈ¡×î´óÁĞÊı
             int colnum = row.getPhysicalNumberOfCells();
             getColumnValToJson(sheet, rownum);
         }

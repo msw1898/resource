@@ -17,26 +17,26 @@ import java.util.List;
  **/
 public class XmlMain {
         public static void main(String[] args) throws Exception {
-            String filePath = "C:\\Users\\Administrator\\Desktop\\æ–°ç¨é€šè¡¥ä¸\\ç”Ÿæˆç±»æ–‡ä»¶\\payplan.bmf";
-            //1.åˆ›å»ºReaderå¯¹è±¡
+            String filePath = "C:\\Users\\Administrator\\Desktop\\ĞÂË°Í¨²¹¶¡\\Éú³ÉÀàÎÄ¼ş\\payplan.bmf";
+            //1.´´½¨Reader¶ÔÏó
             SAXReader reader = new SAXReader();
-            //2.åŠ è½½xml
+            //2.¼ÓÔØxml
             Document document = reader.read(new File(filePath));
-            //3.è·å–æ ¹èŠ‚ç‚¹
+            //3.»ñÈ¡¸ù½Úµã
             Element rootElement = document.getRootElement();
             Iterator iterator = rootElement.elementIterator();
             while (iterator.hasNext()){
                 Element stu = (Element) iterator.next();
                 List<Attribute> attributes = stu.attributes();
-                System.out.println("======è·å–å±æ€§å€¼======");
+                System.out.println("======»ñÈ¡ÊôĞÔÖµ======");
                 for (Attribute attribute : attributes) {
                     System.out.println(attribute.getValue());
                 }
-                System.out.println("======éå†å­èŠ‚ç‚¹======");
+                System.out.println("======±éÀú×Ó½Úµã======");
                 Iterator iterator1 = stu.elementIterator();
                 while (iterator1.hasNext()){
                     Element stuChild = (Element) iterator1.next();
-                    System.out.println("èŠ‚ç‚¹åï¼š"+stuChild.getName()+"---èŠ‚ç‚¹å€¼ï¼š"+stuChild.getStringValue());
+                    System.out.println("½ÚµãÃû£º"+stuChild.getName()+"---½ÚµãÖµ£º"+stuChild.getStringValue());
                 }
             }
         }

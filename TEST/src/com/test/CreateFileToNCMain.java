@@ -11,13 +11,13 @@ import java.io.IOException;
  **/
 public class CreateFileToNCMain {
     public static void main(String[] args) throws IOException {
-        System.out.println("================================å¼€å§‹ï¼");
-        //GetDataFromExcelFile.readExcelToJson("C:\\Users\\Administrator\\Desktop\\æ–°ç¨é€šè¡¥ä¸\\ç”Ÿæˆç±»æ–‡ä»¶\\1.xls");
+        System.out.println("================================¿ªÊ¼£¡");
+        //GetDataFromExcelFile.readExcelToJson("C:\\Users\\Administrator\\Desktop\\ĞÂË°Í¨²¹¶¡\\Éú³ÉÀàÎÄ¼ş\\1.xls");
         //CreatePsnReportingVO();
         //CreatePsnTaxDeclarationVO();
         //CreateSpecialItemVO();
         CreateCompIncomeDecVO();
-        System.out.println("=================================ç»“æŸï¼");
+        System.out.println("=================================½áÊø£¡");
     }
 
     public static void CreatePsnReportingVO() throws IOException {

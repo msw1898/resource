@@ -19,40 +19,40 @@ public class CreateXml {
     public static void main(String[]args){
         Long start = System.currentTimeMillis();
         createXml();
-        System.out.println("è¿è¡Œæ—¶é—´ï¼š"+ (System.currentTimeMillis() - start));
+        System.out.println("ÔËĞĞÊ±¼ä£º"+ (System.currentTimeMillis() - start));
     }
     /**
-     * ç”Ÿæˆxmlæ–¹æ³•
+     * Éú³Éxml·½·¨
      */
     public static void createXml(){
         try {
-            // 1ã€åˆ›å»ºdocumentå¯¹è±¡
+            // 1¡¢´´½¨document¶ÔÏó
             Document document = DocumentHelper.createDocument();
-            // 2ã€åˆ›å»ºæ ¹èŠ‚ç‚¹rss
+            // 2¡¢´´½¨¸ù½Úµãrss
             Element rss = document.addElement("rss");
-            // 3ã€å‘rssèŠ‚ç‚¹æ·»åŠ versionå±æ€§
+            // 3¡¢Ïòrss½ÚµãÌí¼ÓversionÊôĞÔ
             rss.addAttribute("version", "2.0");
-            // 4ã€ç”Ÿæˆå­èŠ‚ç‚¹åŠå­èŠ‚ç‚¹å†…å®¹
+            // 4¡¢Éú³É×Ó½Úµã¼°×Ó½ÚµãÄÚÈİ
             Element channel = rss.addElement("channel");
             Element title = channel.addElement("title");
-            title.setText("å›½å†…æœ€æ–°æ–°é—»");
-            // 5ã€è®¾ç½®ç”Ÿæˆxmlçš„æ ¼å¼
+            title.setText("¹úÄÚ×îĞÂĞÂÎÅ");
+            // 5¡¢ÉèÖÃÉú³ÉxmlµÄ¸ñÊ½
             OutputFormat format = OutputFormat.createPrettyPrint();
-            // è®¾ç½®ç¼–ç æ ¼å¼
+            // ÉèÖÃ±àÂë¸ñÊ½
             format.setEncoding("UTF-8");
 
-            String filePath = "C:\\Users\\Administrator\\Desktop\\æ–°ç¨é€šè¡¥ä¸\\ç”Ÿæˆç±»æ–‡ä»¶\\payplan.xml";
-            // 6ã€ç”Ÿæˆxmlæ–‡ä»¶
+            String filePath = "C:\\Users\\Administrator\\Desktop\\ĞÂË°Í¨²¹¶¡\\Éú³ÉÀàÎÄ¼ş\\payplan.xml";
+            // 6¡¢Éú³ÉxmlÎÄ¼ş
             File file = new File(filePath);
             XMLWriter writer = new XMLWriter(new FileOutputStream(file), format);
-            // è®¾ç½®æ˜¯å¦è½¬ä¹‰ï¼Œé»˜è®¤ä½¿ç”¨è½¬ä¹‰å­—ç¬¦
+            // ÉèÖÃÊÇ·ñ×ªÒå£¬Ä¬ÈÏÊ¹ÓÃ×ªÒå×Ö·û
             writer.setEscapeText(false);
             writer.write(document);
             writer.close();
-            System.out.println("ç”Ÿæˆrss.xmlæˆåŠŸ");
+            System.out.println("Éú³Érss.xml³É¹¦");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ç”Ÿæˆrss.xmlå¤±è´¥");
+            System.out.println("Éú³Érss.xmlÊ§°Ü");
         }
     }
 }

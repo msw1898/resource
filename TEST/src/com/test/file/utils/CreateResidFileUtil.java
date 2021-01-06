@@ -27,7 +27,7 @@ public class CreateResidFileUtil {
     public static void makeResidFile(DataVO dataVO) throws IOException {
         List<String> keyList = setAppendRedisMap(dataVO);
         writeRedisFile(dataVO, keyList);
-        System.out.println("ç”Ÿæˆå¤šè¯­æ–‡ä»¶æˆåŠŸï¼");
+        System.out.println("Éú³É¶àÓïÎÄ¼ş³É¹¦£¡");
     }
 
     /**

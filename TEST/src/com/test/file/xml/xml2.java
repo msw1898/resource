@@ -19,22 +19,22 @@ public class xml2 {
     public static void main(String[] args) {
         Long start = System.currentTimeMillis();
         createXml();
-        System.out.println("è¿è¡Œæ—¶é—´ï¼š" + (System.currentTimeMillis() - start));
+        System.out.println("ÔËĞĞÊ±¼ä£º" + (System.currentTimeMillis() - start));
     }
 
     /**
-     * ç”Ÿæˆxmlæ–¹æ³•
+     * Éú³Éxml·½·¨
      */
     public static void createXml() {
         try {
-            // 1ã€åˆ›å»ºdocumentå¯¹è±¡
+            // 1¡¢´´½¨document¶ÔÏó
             Document document = DocumentHelper.createDocument();
-            // 2ã€åˆ›å»ºæ ¹èŠ‚ç‚¹rss
+            // 2¡¢´´½¨¸ù½Úµãrss
             Element component = document.addElement("component");
             setComponentProp(component);
 
 
-            // 4ã€ç”Ÿæˆå­èŠ‚ç‚¹åŠå­èŠ‚ç‚¹å†…å®¹
+            // 4¡¢Éú³É×Ó½Úµã¼°×Ó½ÚµãÄÚÈİ
             Element celllist = component.addElement("celllist");
             Element entity = celllist.addElement("entity");
             setEntityProp(entity);
@@ -48,7 +48,7 @@ public class xml2 {
             entity.addElement("operationlist");
 
             setBusiInterface(entity);
-            //å‚ç…§
+            //²ÎÕÕ
             Element canzhaolist = entity.addElement("canzhaolist");
             Element canzhao = entity.addElement("canzhao");
             //canzhao.addAttribute("cellid", "");
@@ -66,7 +66,7 @@ public class xml2 {
             setReferenceProp(Reference);
 
             component.addElement("connectlist");
-            // å¼•ç”¨
+            // ÒıÓÃ
             Element refdepends = component.addElement("refdepends");
             Element dependfile = refdepends.addElement("dependfile");
             dependfile.addAttribute("entityid", "6c8722b9-911a-489b-8d0d-18bd3734fcf6");
@@ -86,43 +86,43 @@ public class xml2 {
             ruler2.addElement("guideList");
 
 
-            //title.setText("å›½å†…æœ€æ–°æ–°é—»");
-            // 5ã€è®¾ç½®ç”Ÿæˆxmlçš„æ ¼å¼
+            //title.setText("¹úÄÚ×îĞÂĞÂÎÅ");
+            // 5¡¢ÉèÖÃÉú³ÉxmlµÄ¸ñÊ½
             OutputFormat format = OutputFormat.createPrettyPrint();
-            // è®¾ç½®ç¼–ç æ ¼å¼
+            // ÉèÖÃ±àÂë¸ñÊ½
             format.setEncoding("UTF-8");
 
-            String filePath = "C:\\Users\\Administrator\\Desktop\\æ–°ç¨é€šè¡¥ä¸\\ç”Ÿæˆç±»æ–‡ä»¶\\payplan.xml";
-            // 6ã€ç”Ÿæˆxmlæ–‡ä»¶
+            String filePath = "C:\\Users\\Administrator\\Desktop\\ĞÂË°Í¨²¹¶¡\\Éú³ÉÀàÎÄ¼ş\\payplan.xml";
+            // 6¡¢Éú³ÉxmlÎÄ¼ş
             File file = new File(filePath);
             XMLWriter writer = new XMLWriter(new FileOutputStream(file), format);
-            // è®¾ç½®æ˜¯å¦è½¬ä¹‰ï¼Œé»˜è®¤ä½¿ç”¨è½¬ä¹‰å­—ç¬¦
+            // ÉèÖÃÊÇ·ñ×ªÒå£¬Ä¬ÈÏÊ¹ÓÃ×ªÒå×Ö·û
             writer.setEscapeText(false);
             writer.write(document);
             writer.close();
-            System.out.println("ç”Ÿæˆrss.xmlæˆåŠŸ");
+            System.out.println("Éú³Érss.xml³É¹¦");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ç”Ÿæˆrss.xmlå¤±è´¥");
+            System.out.println("Éú³Érss.xmlÊ§°Ü");
         }
     }
 
     public static void setComponentProp(Element component) {
-        // 3ã€å±æ€§
-        component.addAttribute("conRouterType", "æ‰‹åŠ¨");
+        // 3¡¢ÊôĞÔ
+        component.addAttribute("conRouterType", "ÊÖ¶¯");
         component.addAttribute("createIndustry", "0");
-        // component.addAttribute("createTime", "æ‰‹åŠ¨");
+        // component.addAttribute("createTime", "ÊÖ¶¯");
         component.addAttribute("creator", "");
         component.addAttribute("description", "");
-        //component.addAttribute("displayName", "å‘è–ªè®¡åˆ’");
+        //component.addAttribute("displayName", "·¢Ğ½¼Æ»®");
         component.addAttribute("fromSourceBmf", "true");
-        component.addAttribute("gencodestyle", "NCä¼ ç»Ÿæ ·å¼");
+        component.addAttribute("gencodestyle", "NC´«Í³ÑùÊ½");
         component.addAttribute("help", "");
         // component.addAttribute("id", "d409d1bf-5de9-4755-8261-73b051431f34");
         component.addAttribute("industry", "0");
         component.addAttribute("industryChanged", "false");
         component.addAttribute("industryIncrease", "false");
-        component.addAttribute("industryName", "åŸºç¡€è¡Œä¸š");
+        component.addAttribute("industryName", "»ù´¡ĞĞÒµ");
         component.addAttribute("isSource", "false");
         component.addAttribute("isbizmodel", "false");
         //component.addAttribute("mainEntity", "e6c4dbbf-17e8-4fd4-9383-62fb17342c60");

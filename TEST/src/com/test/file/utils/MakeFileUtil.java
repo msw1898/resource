@@ -15,7 +15,7 @@ import java.util.Map;
 public class MakeFileUtil {
     public static void makeFile(DataVO dataVO,int beginNum) throws IOException {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //绯荤粺褰撳墠鏃堕棿
+        //系统当前时间
         String strsystime = sf.format(System.currentTimeMillis());
         dataVO.setCreateTime(strsystime);
         MainVO mainVO = new MainVO();

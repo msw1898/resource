@@ -32,7 +32,7 @@ public class CreatePdmUtil {
         setTableTail(pdm);
         String newFolderPath = MakeFileUtil.createFileFolder(dataVO.getFilePath(), dataVO.getFileName());
         writeTxt(pdm.toString(), newFolderPath+"//"+dataVO.getFileName()+".pdm");
-        System.out.println("ç”Ÿæˆ"+dataVO.getFileName()+".pdm"+"æˆåŠŸï¼");
+        System.out.println("Éú³É"+dataVO.getFileName()+".pdm"+"³É¹¦£¡");
     }
 
     /**
@@ -44,7 +44,7 @@ public class CreatePdmUtil {
         UUID uuid = UUID.randomUUID();
         String tableId=uuid.toString().toUpperCase();
         String createTime=String.valueOf(System.currentTimeMillis());
-        //è¡¨
+        //±í
         pdm.append("<a:ObjectID>"+tableId+"</a:ObjectID>\r\n");
         pdm.append("<a:Name>"+dataVO.getParentVO().getTableDisplayName()+"</a:Name>\r\n");
         pdm.append("<a:Code>"+dataVO.getParentVO().getTableName()+"</a:Code>\r\n");
@@ -84,7 +84,7 @@ public class CreatePdmUtil {
             }
             pdm.append("<a:Length>"+vo.getLength()+"</a:Length>\r\n");
             if("N".equals(vo.getIsNull())) {
-                pdm.append("<a:Mandatory>1</a:Mandatory>\n");//èƒ½å¦ä¸ºç©º
+                pdm.append("<a:Mandatory>1</a:Mandatory>\n");//ÄÜ·ñÎª¿Õ
             }
             pdm.append("</o:Column>\r\n");
         }
@@ -116,7 +116,7 @@ public class CreatePdmUtil {
         pdm.append("</c:Key.Columns>\r\n");
         pdm.append("</o:Key>\r\n");
 
-        //ä¸»é”®
+        //Ö÷¼ü
         uuid = UUID.randomUUID();
         keyId=uuid.toString().toUpperCase();
         pdm.append("<o:Key Id=\"o"+(++beginNum)+"\">\r\n");
@@ -203,13 +203,13 @@ public class CreatePdmUtil {
         pdm.append("<c:TargetModels>\r\n");
         pdm.append("<o:TargetModel Id=\"o"+(++beginNum)+"\">\r\n");
         pdm.append("<a:ObjectID>0B5DF864-6D76-46D0-AD3C-341770E8489C</a:ObjectID>\r\n");
-        pdm.append("<a:Name>ï¿½ï¿½èµ„ç®¡ç†</a:Name>\r\n");
+        pdm.append("<a:Name>??×Ê¹ÜÀí</a:Name>\r\n");
         pdm.append("<a:Code>CDM_WA</a:Code>\r\n");
         pdm.append("<a:CreationDate>0</a:CreationDate>\r\n");
         pdm.append("<a:Creator/>\r\n");
         pdm.append("<a:ModificationDate>0</a:ModificationDate>\r\n");
         pdm.append("<a:Modifier/>\r\n");
-        pdm.append("<a:TargetModelURL>file:///E|/Product group/ææƒ è/NC_SD_WA_CDM.cdm</a:TargetModelURL>\r\n");
+        pdm.append("<a:TargetModelURL>file:///E|/Product group/Àî»İÆ¼/NC_SD_WA_CDM.cdm</a:TargetModelURL>\r\n");
         pdm.append("<a:TargetModelID>886C3AD4-2798-11D5-A63D-52544C197D3C</a:TargetModelID>\r\n");
         pdm.append("<a:TargetModelClassID>1E597170-9350-11D1-AB3C-0020AF71E433</a:TargetModelClassID>\r\n");
         pdm.append("<c:SessionShortcuts>\r\n");
@@ -238,7 +238,7 @@ public class CreatePdmUtil {
         pdm.append("</Model>\r\n");
     }
     /**
-     * å°†ç”Ÿæˆçš„å­—æ®µå±æ€§å†™å…¥txt
+     * ½«Éú³ÉµÄ×Ö¶ÎÊôĞÔĞ´Èëtxt
      *
      * @param content
      * @param filePath

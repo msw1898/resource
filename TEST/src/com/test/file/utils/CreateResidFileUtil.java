@@ -2,6 +2,7 @@ package com.test.file.utils;
 
 import com.test.file.utils.vo.BodyVO;
 import com.test.file.utils.vo.DataVO;
+import com.test.file.utils.vo.EmumVO;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,7 +42,7 @@ public class CreateResidFileUtil {
             appendResidMap = new HashMap<String, String>();
         }
         if (!redisMap.containsValue(dataVO.getParentVO().getTableDisplayName())) {
-            if(!redisMap.containsKey(dataVO.getParentVO().getTableDisplayName())) {
+            if (!redisMap.containsKey(dataVO.getParentVO().getTableDisplayName())) {
                 appendResidMap.put(dataVO.getParentVO().getTableDisplayName(), dataVO.getResidRule());
                 keyList.add(dataVO.getParentVO().getTableDisplayName());
             }
@@ -61,6 +62,24 @@ public class CreateResidFileUtil {
                 }
                 appendResidMap.put(vo.getFieldName(), redisFlag + num);
                 keyList.add(vo.getFieldName());
+            }
+        }
+        if (dataVO.getEmumMap() != null) {
+            for (String str : dataVO.getEmumMap().keySet()) {
+                for (EmumVO emum : dataVO.getEmumMap().get(str).getEmumList()) {
+                    if (!redisMap.containsKey(emum.getName())) {
+                        seq++;
+                        if (seq < 10) {
+                            num = "00" + seq;
+                        } else if (seq < 100) {
+                            num = "0" + seq;
+                        } else {
+                            num = seq + "";
+                        }
+                        appendResidMap.put(emum.getName(), redisFlag + num);
+                        keyList.add(emum.getName());
+                    }
+                }
             }
         }
         dataVO.setAppendResidFileMap(appendResidMap);

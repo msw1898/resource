@@ -2,7 +2,10 @@ package com.test.file.utils;
 
 import com.test.file.utils.vo.BodyVO;
 import com.test.file.utils.vo.DataVO;
+import com.test.file.utils.vo.EmumVO;
 import com.yonyou.cloud.utils.StringUtils;
+import nccloud.commons.collections.MapUtils;
+import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -11,6 +14,8 @@ import org.dom4j.io.XMLWriter;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -70,15 +75,17 @@ public class CreateBmfUtil {
         accessor.addAttribute("displayName", "NCVO");
         accessor.addAttribute("name", "NCVO");
         Element properties = accessor.addElement("properties");
-
+        // 引用
         Element Reference = celllist.addElement("Reference");
         setReferenceProp(Reference, dataVO);
-
+        // 枚举
+        if (!MapUtils.isEmpty(dataVO.getEmumMap())) {
+            setEnumerates(celllist, dataVO, document);
+        }
         Element connectlist = component.addElement("connectlist");
         Element busiitfconnection = connectlist.addElement("busiitfconnection");
         setbusiitfconnection(busiitfconnection, dataVO);
         busiitfconnection.addElement("points");
-
         // 引用
         Element refdepends = component.addElement("refdepends");
         Element dependfile = refdepends.addElement("dependfile");
@@ -99,7 +106,6 @@ public class CreateBmfUtil {
     }
 
     /**
-     *
      * @param busiitfconnection
      * @param dataVO
      */
@@ -113,8 +119,8 @@ public class CreateBmfUtil {
         busiitfconnection.addAttribute("displayName", "");
         busiitfconnection.addAttribute("help", "");
         busiitfconnection.addAttribute("id", UUID.randomUUID().toString());
-        busiitfconnection.addAttribute("industryChanged","false");
-        busiitfconnection.addAttribute("isSource","false");
+        busiitfconnection.addAttribute("industryChanged", "false");
+        busiitfconnection.addAttribute("isSource", "false");
         busiitfconnection.addAttribute("modifier", "");
         busiitfconnection.addAttribute("modifyIndustry", "0");
         busiitfconnection.addAttribute("modifyTime", "");
@@ -460,6 +466,113 @@ public class CreateBmfUtil {
         Reference.addAttribute("width", "100");
         Reference.addAttribute("x", "55");
         Reference.addAttribute("y", "37");
+    }
+
+    /**
+     * 设置枚举
+     *
+     * @param celllist
+     * @param dataVO
+     */
+    public static void setEnumerates(Element celllist, DataVO dataVO, Document document) {
+        int position=0;
+        for (String str : dataVO.getEmumMap().keySet()) {
+            position++;
+            Element Enumerate = celllist.addElement("Enumerate");
+            EmumVO emumVO = dataVO.getEmumMap().get(str);
+            String enumPId = UUID.randomUUID().toString();
+            //回写枚举
+            backWriteEnumAttr(document, emumVO, enumPId);
+            // 枚举主体
+            setEnumerate(Enumerate, enumPId, dataVO, str,position);
+            Element enumitemlist = Enumerate.addElement("enumitemlist");
+            for (int i = 0; i < emumVO.getEmumList().size(); i++) {
+                Element enumitem = enumitemlist.addElement("enumitem");
+                // 枚举具体值
+                setEnumitem(enumitem, emumVO, enumPId, i, dataVO);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param document
+     * @param emumVO
+     * @param enumPId
+     */
+    public static void backWriteEnumAttr(Document document, EmumVO emumVO, String enumPId) {
+        List attributeList = document.selectNodes("//attribute");
+        Iterator it = attributeList.iterator();
+        while (it.hasNext()) {
+            Element elt = (Element) it.next();
+            Attribute attr = elt.attribute("fieldName");
+            if (attr.getValue().equals(emumVO.getCode())) {
+                elt.attribute("typeDisplayName").setValue(emumVO.getName());
+                elt.attribute("typeName").setValue(emumVO.getName());
+                elt.attribute("dataType").setValue(enumPId);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param Enumerate
+     * @param enumPId
+     * @param dataVO
+     * @param str
+     */
+    public static void setEnumerate(Element Enumerate, String enumPId, DataVO dataVO, String str,int position) {
+        Enumerate.addAttribute("componentID", dataVO.getComponentID());
+        Enumerate.addAttribute("createIndustry", "0");
+        Enumerate.addAttribute("createTime", "37");
+        Enumerate.addAttribute("creator", "");
+        Enumerate.addAttribute("dataType", "BS000010000100001001");
+        Enumerate.addAttribute("dbtype", "varchar");
+        Enumerate.addAttribute("description", "");
+        Enumerate.addAttribute("displayName", str);
+        Enumerate.addAttribute("fullClassName", "");
+        Enumerate.addAttribute("height", "100");
+        Enumerate.addAttribute("help", "");
+        Enumerate.addAttribute("id", enumPId);
+        Enumerate.addAttribute("industryChanged", "false");
+        Enumerate.addAttribute("isSource", "false");
+        Enumerate.addAttribute("modInfoClassName", "");
+        Enumerate.addAttribute("modifier", "");
+        Enumerate.addAttribute("modifyIndustry", "0");
+        Enumerate.addAttribute("modifyTime", "");
+        Enumerate.addAttribute("name", str);
+        Enumerate.addAttribute("resid", getResidNameByResid(str, dataVO));
+        Enumerate.addAttribute("typeDisplayName", "String");
+        Enumerate.addAttribute("typeName", "String");
+        Enumerate.addAttribute("versionType", "0");
+        Enumerate.addAttribute("visibility", "public");
+        Enumerate.addAttribute("width", "80");
+        Enumerate.addAttribute("x", "530");
+        Enumerate.addAttribute("y", String.valueOf(50+position*120));
+    }
+
+    /**
+     *
+     * @param enumitem
+     * @param emumVO
+     * @param enumPId
+     * @param i
+     * @param dataVO
+     */
+    public static void setEnumitem(Element enumitem, EmumVO emumVO, String enumPId, int i, DataVO dataVO) {
+        enumitem.addAttribute("createIndustry", "0");
+        enumitem.addAttribute("description", "");
+        enumitem.addAttribute("enumDisplay", emumVO.getEmumList().get(i).getName());
+        enumitem.addAttribute("enumID", UUID.randomUUID().toString());
+        enumitem.addAttribute("enumValue", emumVO.getEmumList().get(i).getValue());
+        enumitem.addAttribute("hidden", "false");
+        enumitem.addAttribute("id", enumPId);
+        enumitem.addAttribute("industryChanged", "fasle");
+        enumitem.addAttribute("isSource", "fasle");
+        enumitem.addAttribute("modifyIndustry", "0");
+        enumitem.addAttribute("resid", getResidNameByResid(emumVO.getEmumList().get(i).getName(), dataVO));
+        enumitem.addAttribute("sequence", String.valueOf(i));
+        enumitem.addAttribute("versionType", "0");
     }
 
     /**

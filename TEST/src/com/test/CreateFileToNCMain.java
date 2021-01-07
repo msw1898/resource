@@ -16,6 +16,7 @@ public class CreateFileToNCMain {
         //CreatePsnReportingVO();
         //CreatePsnTaxDeclarationVO();
         //CreateSpecialItemVO();
+        //CreateSpecialItemVO();
         CreateCompIncomeDecVO();
         System.out.println("=================================½áÊø£¡");
     }

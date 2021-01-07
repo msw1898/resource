@@ -23,6 +23,7 @@ public class MakeFileUtil {
         Map<String,String> residMap=new HashMap<String,String>();
         dataVO.setResidFileMap(residMap);
         dataVO = GetDataFromExcelFile.readExcel(dataVO);
+        dataVO = GetDataFromExcelFile.readExcelToEmum(dataVO);
         dataVO = GetDataFromTxtFile.readTxtFile(dataVO);
         CreateResidFileUtil.makeResidFile(dataVO);
         CreateClassUtil.createClass(dataVO);

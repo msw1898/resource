@@ -2,6 +2,7 @@ package com.test.file.utils;
 
 import com.test.file.utils.vo.BodyVO;
 import com.test.file.utils.vo.DataVO;
+import com.test.file.utils.vo.EmumVO;
 import com.test.file.utils.vo.MainVO;
 import nccloud.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,7 @@ import java.util.Map;
  **/
 public class GetDataFromExcelFile {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
     /**
      * @param dataVO
      * @return
@@ -106,7 +109,6 @@ public class GetDataFromExcelFile {
     }
 
     /**
-     *
      * @param cell
      * @return
      */
@@ -139,7 +141,6 @@ public class GetDataFromExcelFile {
     }
 
     /**
-     *
      * @param strDigt
      * @return
      */
@@ -169,8 +170,8 @@ public class GetDataFromExcelFile {
             return strDigt;
         }
     }
+
     /**
-     *
      * @param sheet
      * @return
      */
@@ -194,7 +195,6 @@ public class GetDataFromExcelFile {
     }
 
     /**
-     *
      * @param sheet
      * @param rownum
      * @return
@@ -207,19 +207,19 @@ public class GetDataFromExcelFile {
             Map<String, String> map = new LinkedHashMap<String, String>();
             row = sheet.getRow(i);
             if (row != null) {
-                String fieldType=(String) getCellFormatValue(row.getCell(0));
-                String fieldCode=(String) getCellFormatValue(row.getCell(1));
-                String fieldName=(String) getCellFormatValue(row.getCell(2));
-                String isNull=(String) getCellFormatValue(row.getCell(3));
-                String length=(String) getCellFormatValue(row.getCell(4));
-                String isCreateVOField=(String) getCellFormatValue(row.getCell(5));
+                String fieldType = (String) getCellFormatValue(row.getCell(0));
+                String fieldCode = (String) getCellFormatValue(row.getCell(1));
+                String fieldName = (String) getCellFormatValue(row.getCell(2));
+                String isNull = (String) getCellFormatValue(row.getCell(3));
+                String length = (String) getCellFormatValue(row.getCell(4));
+                String isCreateVOField = (String) getCellFormatValue(row.getCell(5));
                 if (StringUtils.isNotBlank(fieldType) || StringUtils.isNotBlank(fieldCode) || StringUtils.isNotBlank(fieldName) || StringUtils.isNotBlank(length)) {
                     fieldInfo = new BodyVO();
                     fieldInfo.setFieldType(fieldType);
                     fieldInfo.setFieldCode(fieldCode);
                     fieldInfo.setFieldName(fieldName);
-                    fieldInfo.setLength(length.replace(".0",""));
-                    fieldInfo.setIsNull(isNull==null?"Y":isNull);
+                    fieldInfo.setLength(length.replace(".0", ""));
+                    fieldInfo.setIsNull(isNull == null ? "Y" : isNull);
                     if (StringUtils.isNotBlank(isCreateVOField) && "N".equals(isCreateVOField)) {
                         fieldInfo.setIsCreateField("N");
                     }
@@ -231,7 +231,6 @@ public class GetDataFromExcelFile {
     }
 
     /**
-     *
      * @param filePath
      */
     public static void readExcelToJson(String filePath) {
@@ -251,6 +250,7 @@ public class GetDataFromExcelFile {
             getColumnValToJson(sheet, rownum);
         }
     }
+
     public static void getColumnValToJson(Sheet sheet, int rownum) {
         Row row;
         BodyVO fieldInfo;
@@ -259,8 +259,80 @@ public class GetDataFromExcelFile {
             Map<String, String> map = new LinkedHashMap<String, String>();
             row = sheet.getRow(i);
             if (row != null) {
-                System.out.println("json.put(\""+row.getCell(0)+"\",row.getCell(\"\").getDisplay()); // "+row.getCell(1));
+                System.out.println("json.put(\"" + row.getCell(0) + "\",row.getCell(\"\").getDisplay()); // " + row.getCell(1));
             }
         }
+    }
+
+    public static DataVO readExcelToEmum(DataVO dataVO) {
+        String filePath = dataVO.getFilePath() + "//" + dataVO.getFileName() + ".xls";
+        Workbook wb = null;
+        Sheet sheet = null;
+        Row row = null;
+        List<BodyVO> list = null;
+        String cellData = null;
+        wb = createWorkbook(filePath);
+        if (wb != null) {
+            //用来存放表中数据
+            list = new ArrayList<BodyVO>();
+            //获取第一个sheet
+            sheet = wb.getSheetAt(1);
+            //获取最大行数
+            int rownum = sheet.getPhysicalNumberOfRows();
+            if (rownum == 0) {
+                return dataVO;
+            }
+            //获取第一行
+            row = sheet.getRow(0);
+            //获取最大列数
+            int colnum = row.getPhysicalNumberOfCells();
+            dataVO.setEmumMap(getEmumMap(sheet, rownum));
+        }
+        return dataVO;
+    }
+
+    /**
+     * @param sheet
+     * @param rownum
+     * @return
+     */
+    public static Map<String, EmumVO> getEmumMap(Sheet sheet, int rownum) {
+        Row row;
+        BodyVO fieldInfo;
+        Map<String, EmumVO> map = new HashMap<String, EmumVO>();
+        EmumVO emumVOP;
+        List<EmumVO> bodyList;
+        String lastPName = "";
+        for (int i = 0; i < rownum; i++) {
+            row = sheet.getRow(i);
+            if (row != null) {
+                String emumPCode = (String) getCellFormatValue(row.getCell(0));
+                String emumPName = (String) getCellFormatValue(row.getCell(1));
+                String emumBCode = (String) getCellFormatValue(row.getCell(2));
+                String emumBName = (String) getCellFormatValue(row.getCell(3));
+                String emumBValue = (String) getCellFormatValue(row.getCell(4));
+                if (StringUtils.isNotBlank(emumPName)) {
+                    lastPName = emumPName;
+                }
+                emumVOP = map.get(lastPName);
+                if (emumVOP == null) {
+                    emumVOP = new EmumVO();
+                    emumVOP.setCode(emumPCode);
+                    emumVOP.setName(emumPName);
+                    map.put(emumPName, emumVOP);
+                }
+                bodyList = emumVOP.getEmumList();
+                if (bodyList == null) {
+                    bodyList = new ArrayList<>();
+                    emumVOP.setEmumList(bodyList);
+                }
+                EmumVO emumVOB = new EmumVO();
+                emumVOB.setName(emumBName);
+                emumVOB.setCode(emumBCode);
+                emumVOB.setValue(emumBValue.replace(".0", ""));
+                bodyList.add(emumVOB);
+            }
+        }
+        return map;
     }
 }

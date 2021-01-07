@@ -23,6 +23,7 @@ public class DataVO {
     private String moduleName;
     private String residRule;
     private String referenceId;
+    private Map<String, EmumVO> emumMap;
 
     public String getComponentID() {
         return componentID;
@@ -127,5 +128,13 @@ public class DataVO {
 
     public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
+    }
+
+    public Map<String, EmumVO> getEmumMap() {
+        return emumMap;
+    }
+
+    public void setEmumMap(Map<String, EmumVO> emumMap) {
+        this.emumMap = emumMap;
     }
 }

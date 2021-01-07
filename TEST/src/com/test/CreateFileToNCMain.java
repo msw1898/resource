@@ -17,8 +17,24 @@ public class CreateFileToNCMain {
         //CreatePsnTaxDeclarationVO();
         //CreateSpecialItemVO();
         //CreateSpecialItemVO();
-        CreateCompIncomeDecVO();
+        //CreateCompIncomeDecVO();
+        //CreateReduItemVO();
+        CreateReduItemBVO();
         System.out.println("=================================½áÊø£¡");
+    }
+    public static void CreateReduItemBVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduItemBVO", "0601313reduceitem000"), 211);
+    }
+    public static void CreateReduItemVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduItemVO", "0601313reducetax000"), 188);
+    }
+
+    public static void CreateCompIncomeDecVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("CompIncomeDecVO", "0601313compincomedec000"), 143);
+    }
+
+    public static void CreateSpecialItemVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("SpecialItemVO", "0601313specialitem000"), 115);
     }
 
     public static void CreatePsnReportingVO() throws IOException {
@@ -29,12 +45,5 @@ public class CreateFileToNCMain {
         MakeFileUtil.makeFile(MakeFileUtil.ensureParam("PsnTaxDeclarationVO", "0000000psntax000"), 0);
     }
 
-    public static void CreateSpecialItemVO() throws IOException {
-        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("SpecialItemVO", "0601313specialitem000"), 115);
-    }
-
-    public static void CreateCompIncomeDecVO() throws IOException {
-        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("CompIncomeDecVO", "0601313compincomedec000"), 143);
-    }
 
 }

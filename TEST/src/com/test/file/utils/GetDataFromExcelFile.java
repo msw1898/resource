@@ -275,6 +275,10 @@ public class GetDataFromExcelFile {
         if (wb != null) {
             //用来存放表中数据
             list = new ArrayList<BodyVO>();
+            int sheetCount = wb.getNumberOfSheets();
+            if (sheetCount <= 1) {
+                return dataVO;
+            }
             //获取第一个sheet
             sheet = wb.getSheetAt(1);
             //获取最大行数

@@ -203,7 +203,7 @@ public class CreatePdmUtil {
         pdm.append("<c:TargetModels>\r\n");
         pdm.append("<o:TargetModel Id=\"o"+(++beginNum)+"\">\r\n");
         pdm.append("<a:ObjectID>0B5DF864-6D76-46D0-AD3C-341770E8489C</a:ObjectID>\r\n");
-        pdm.append("<a:Name>??资管理</a:Name>\r\n");
+        pdm.append("<a:Name>薪资管理</a:Name>\r\n");
         pdm.append("<a:Code>CDM_WA</a:Code>\r\n");
         pdm.append("<a:CreationDate>0</a:CreationDate>\r\n");
         pdm.append("<a:Creator/>\r\n");

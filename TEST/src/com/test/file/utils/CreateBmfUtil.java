@@ -65,7 +65,7 @@ public class CreateBmfUtil {
         //参照
         Element canzhaolist = entity.addElement("canzhaolist");
         if ("Y".equals(dataVO.getParentVO().getIsReference())) {
-            Element canzhao = entity.addElement("canzhao");
+            Element canzhao = canzhaolist.addElement("canzhao");
             canzhao.addAttribute("cellid", dataVO.getParentVO().getClassID());
             canzhao.addAttribute("isdefault", "true");
             canzhao.addAttribute("name", dataVO.getParentVO().getReferenceName());
@@ -276,15 +276,15 @@ public class CreateBmfUtil {
                 attribute.addAttribute("dataType", "218971f0-e5dc-408b-9a32-56529dddd4db");
                 attribute.addAttribute("dataTypeStyle", "REF");
                 attribute.addAttribute("displayName", "人员主键");
-                attribute.addAttribute("refModelName", "HR人员");
+                attribute.addAttribute("refModelName", "HR人员(集团)");
                 attribute.addAttribute("typeDisplayName", "人员基本信息");
                 attribute.addAttribute("typeName", "bd_psndoc");
             } else if ("pk_psnjob".equals(bodyVO.getFieldCode())) {
-                attribute.addAttribute("dataType", "8df12441-6f47-4ebf-ad14-0dcad84353b9");
+                attribute.addAttribute("dataType", "7156d223-4531-4337-b192-492ab40098f1");
                 attribute.addAttribute("dataTypeStyle", "REF");
-                attribute.addAttribute("displayName", "任职记录主键");
-                attribute.addAttribute("refModelName", "");
-                attribute.addAttribute("typeDisplayName", "人员工作记录");
+                attribute.addAttribute("displayName", "任职记录");
+                attribute.addAttribute("refModelName", "人员工作记录");
+                attribute.addAttribute("typeDisplayName", "工作记录");
                 attribute.addAttribute("typeName", "hi_psnjob");
             } else if ("creator".equals(bodyVO.getFieldCode())) {
                 attribute.addAttribute("dataType", "f6f9a473-56c0-432f-8bc7-fbf8fde54fee");
@@ -385,7 +385,7 @@ public class CreateBmfUtil {
         Element itfid = busiitfs.addElement("itfid");
         itfid.setText("6c8722b9-911a-489b-8d0d-18bd3734fcf6");
         Element busimaps = entity.addElement("busimaps");
-        Element busimap = entity.addElement("busimap");
+        Element busimap = busimaps.addElement("busimap");
         busimap.addAttribute("attrid", dataVO.getParentVO().getKeyAttributeId());
         busimap.addAttribute("attrpath", "");
         busimap.addAttribute("attrpathid", "");
@@ -393,7 +393,7 @@ public class CreateBmfUtil {
         busimap.addAttribute("busiitfid", "6c8722b9-911a-489b-8d0d-18bd3734fcf6");
         busimap.addAttribute("cellid", dataVO.getParentVO().getClassID());
 
-        busimap = entity.addElement("busimap");
+        busimap = busimaps.addElement("busimap");
         busimap.addAttribute("attrid", "");
         busimap.addAttribute("attrpath", "");
         busimap.addAttribute("attrpathid", "");
@@ -401,8 +401,8 @@ public class CreateBmfUtil {
         busimap.addAttribute("busiitfid", "6c8722b9-911a-489b-8d0d-18bd3734fcf6");
         busimap.addAttribute("cellid", dataVO.getParentVO().getClassID());
 
-        busimap = entity.addElement("busimap");
-        //busimap.addAttribute("attrid","b8831abc-09e2-4c55-bf16-d18dcfec6fdd");
+        busimap = busimaps.addElement("busimap");
+        busimap.addAttribute("attrid","");
         busimap.addAttribute("attrpath", "");
         busimap.addAttribute("attrpathid", "");
         busimap.addAttribute("busiitfattrid", "ecf1b76a-6e44-42e2-a55e-87596504775b");
@@ -410,7 +410,7 @@ public class CreateBmfUtil {
         busimap.addAttribute("cellid", dataVO.getParentVO().getClassID());
 
 
-        busimap = entity.addElement("busimap");
+        busimap = busimaps.addElement("busimap");
         busimap.addAttribute("attrid", "");
         busimap.addAttribute("attrpath", "");
         busimap.addAttribute("attrpathid", "");
@@ -418,7 +418,7 @@ public class CreateBmfUtil {
         busimap.addAttribute("busiitfid", "6c8722b9-911a-489b-8d0d-18bd3734fcf6");
         busimap.addAttribute("cellid", dataVO.getParentVO().getClassID());
 
-        busimap = entity.addElement("busimap");
+        busimap = busimaps.addElement("busimap");
         busimap.addAttribute("attrid", "");
         busimap.addAttribute("attrpath", "");
         busimap.addAttribute("attrpathid", "");
@@ -426,8 +426,8 @@ public class CreateBmfUtil {
         busimap.addAttribute("busiitfid", "6c8722b9-911a-489b-8d0d-18bd3734fcf6");
         busimap.addAttribute("cellid", dataVO.getParentVO().getClassID());
 
-        busimap = entity.addElement("busimap");
-        //busimap.addAttribute("attrid","b8831abc-09e2-4c55-bf16-d18dcfec6fdd");
+        busimap = busimaps.addElement("busimap");
+        busimap.addAttribute("attrid","");
         busimap.addAttribute("attrpath", "");
         busimap.addAttribute("attrpathid", "");
         busimap.addAttribute("busiitfattrid", "a47e6cda-09e4-480b-923f-ec6f41e3e06c");

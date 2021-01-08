@@ -18,15 +18,23 @@ public class CreateFileToNCMain {
         //CreateSpecialItemVO();
         //CreateSpecialItemVO();
         //CreateCompIncomeDecVO();
-        //CreateReduItemVO();
-        CreateReduItemBVO();
+        //CreateReduTaxVO();
+        //CreateReduDetailVO();
+        //CreateDeclProcessVO();
+        CreateReduItemVO();
         System.out.println("=================================½áÊø£¡");
     }
-    public static void CreateReduItemBVO() throws IOException {
-        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduItemBVO", "0601313reduceitem000"), 211);
-    }
     public static void CreateReduItemVO() throws IOException {
-        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduItemVO", "0601313reducetax000"), 188);
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduItemVO", "0601313reduceitem000"), 244);
+    }
+    public static void CreateDeclProcessVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("DeclProcessVO", "0601313declprocess000"), 227);
+    }
+    public static void CreateReduDetailVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduDetailVO", "0601313reducedetail000"), 211);
+    }
+    public static void CreateReduTaxVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduTaxVO", "0601313reducetax000"), 188);
     }
 
     public static void CreateCompIncomeDecVO() throws IOException {

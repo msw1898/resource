@@ -210,9 +210,9 @@ public class GetDataFromExcelFile {
                 String fieldType = (String) getCellFormatValue(row.getCell(0));
                 String fieldCode = (String) getCellFormatValue(row.getCell(1));
                 String fieldName = (String) getCellFormatValue(row.getCell(2));
-                String isNull = (String) getCellFormatValue(row.getCell(3));
-                String length = (String) getCellFormatValue(row.getCell(4));
-                String isCreateVOField = (String) getCellFormatValue(row.getCell(5));
+                String isNull = (String) getCellFormatValue(row.getCell(4));
+                String length = (String) getCellFormatValue(row.getCell(5));
+                String isCreateVOField = (String) getCellFormatValue(row.getCell(6));
                 if (StringUtils.isNotBlank(fieldType) || StringUtils.isNotBlank(fieldCode) || StringUtils.isNotBlank(fieldName) || StringUtils.isNotBlank(length)) {
                     fieldInfo = new BodyVO();
                     fieldInfo.setFieldType(fieldType);

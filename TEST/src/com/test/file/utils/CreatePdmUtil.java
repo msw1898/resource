@@ -79,6 +79,10 @@ public class CreatePdmUtil {
             pdm.append("<a:Modifier>Administrator</a:Modifier>\r\n");
             if(dataVO.getParentVO().getTablePk().equals(vo.getFieldCode())||"modifiedtime".equals(vo.getFieldCode())||"creationtime".equals(vo.getFieldCode())){
                 pdm.append("<a:DataType>char("+vo.getLength()+")</a:DataType>\r\n");
+            }if("Integer".equals(vo.getFieldType())){
+                pdm.append("<a:DataType>smallint</a:DataType>\r\n");
+            }if("UFBoolean".equals(vo.getFieldType())){
+                pdm.append("<a:DataType>char(1)</a:DataType>\r\n");
             }else{
                 pdm.append("<a:DataType>nvarchar("+vo.getLength()+")</a:DataType>\r\n");
             }

@@ -331,16 +331,31 @@ public class CreateBmfUtil {
         attribute.addAttribute("isKey", "false");
         attribute.addAttribute("isNullable", "Y".equals(bodyVO.getIsNull()) ? "true" : "false");
         attribute.addAttribute("refModelName", "");
-        attribute.addAttribute("fieldType", "varchar");
         attribute.addAttribute("accessStrategy", "");
         attribute.addAttribute("accesspower", "false");
         attribute.addAttribute("accesspowergroup", "");
         attribute.addAttribute("calculation", "false");
         attribute.addAttribute("classID", dataVO.getParentVO().getClassID());
         attribute.addAttribute("createIndustry", "0");
-        attribute.addAttribute("typeDisplayName", "String");
-        attribute.addAttribute("typeName", "String");
-        attribute.addAttribute("dataType", "BS000010000100001001");
+        if ("UFBoolean".equals(bodyVO.getFieldType())) {
+            attribute.addAttribute("dataType", "BS000010000100001001");
+            attribute.addAttribute("fieldType", "char");
+            attribute.addAttribute("dbtype", "char");
+            attribute.addAttribute("typeDisplayName", "UFBoolean");
+            attribute.addAttribute("typeName", "UFBoolean");
+        }else if ("Integer".equals(bodyVO.getFieldType())) {
+            attribute.addAttribute("dataType", "BS000010000100001004");
+            attribute.addAttribute("fieldType", "int");
+            attribute.addAttribute("dbtype", "int");
+            attribute.addAttribute("typeDisplayName", "Integer");
+            attribute.addAttribute("typeName", "Integer");
+        }else {
+            attribute.addAttribute("dataType", "BS000010000100001032");
+            attribute.addAttribute("fieldType", "varchar");
+            attribute.addAttribute("dbtype", "varchar");
+            attribute.addAttribute("typeDisplayName", "String");
+            attribute.addAttribute("typeName", "String");
+        }
         attribute.addAttribute("dataTypeStyle", "SINGLE");
         attribute.addAttribute("displayName", bodyVO.getFieldName());
         attribute.addAttribute("defaultValue", "");

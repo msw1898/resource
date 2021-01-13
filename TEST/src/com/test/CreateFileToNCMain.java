@@ -1,5 +1,6 @@
 package com.test;
 
+import com.test.file.utils.ConsUtil;
 import com.test.file.utils.MakeFileUtil;
 
 import java.io.IOException;
@@ -10,9 +11,30 @@ import java.io.IOException;
  * @create: 2021-01-06 09:47
  **/
 public class CreateFileToNCMain {
+    static String FILEPATH = "C:\\Users\\Administrator\\Desktop\\新税通补丁\\生成类文件\\";
+    static String RESIDALLPATH = FILEPATH + "\\601313psntax.properties";
+
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
+        ConsUtil.setFilepath(FILEPATH);
+        ConsUtil.setResidallpath(RESIDALLPATH);
         System.out.println("================================开始！");
+        CreateFile();
+        System.out.println("=================================结束！");
+    }
+
+    /**
+     *
+     * @throws IOException
+     */
+    public static void CreateFile() throws IOException {
         //GetDataFromExcelFile.readExcelToJson("C:\\Users\\Administrator\\Desktop\\新税通补丁\\生成类文件\\1.xls");
+        //CreatePsnTaxSettingVO();
+        //CreatePsnTaxClassVO();
         //CreatePsnReportingVO();
         //CreatePsnTaxDeclarationVO();
         //CreateSpecialItemVO();
@@ -20,10 +42,19 @@ public class CreateFileToNCMain {
         //CreateCompIncomeDecVO();
         //CreateReduTaxVO();
         //CreateReduDetailVO();
-        //CreateDeclProcessVO();
+        CreateTaxProcessVO();
         //CreateReduItemVO();
-        CreateTaxItemSettingVO();
-        System.out.println("=================================结束！");
+        //CreateTaxItemSettingVO();
+        //CreateTaxPaymentVO();
+        //CreateTripeAgreementVO();
+    }
+
+    public static void CreateTripeAgreementVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("TripeAgreementVO", "0601313tripeagreement000"), 326);
+    }
+
+    public static void CreateTaxPaymentVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("TaxPaymentVO", "0601313taxpayment000"), 293);
     }
 
     public static void CreateTaxItemSettingVO() throws IOException {
@@ -34,8 +65,8 @@ public class CreateFileToNCMain {
         MakeFileUtil.makeFile(MakeFileUtil.ensureParam("ReduItemVO", "0601313reduceitem000"), 244);
     }
 
-    public static void CreateDeclProcessVO() throws IOException {
-        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("DeclProcessVO", "0601313declprocess000"), 227);
+    public static void CreateTaxProcessVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("TaxProcessVO", "0601313declprocess000"), 227);
     }
 
     public static void CreateReduDetailVO() throws IOException {
@@ -62,5 +93,11 @@ public class CreateFileToNCMain {
         MakeFileUtil.makeFile(MakeFileUtil.ensureParam("PsnTaxDeclarationVO", "0000000psntax000"), 0);
     }
 
+    public static void CreatePsnTaxSettingVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("PsnTaxSettingVO", "1000000test000"), 0);
+    }
 
+    public static void CreatePsnTaxClassVO() throws IOException {
+        MakeFileUtil.makeFile(MakeFileUtil.ensureParam("PsnTaxClassVO", "0000000test000"), 0);
+    }
 }

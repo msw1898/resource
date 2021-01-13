@@ -33,8 +33,8 @@ public class MakeFileUtil {
 
     public static DataVO ensureParam(String fileName, String residRule) throws IOException {
         DataVO dataVO = new DataVO();
-        dataVO.setFilePath(ConsUtil.FILEPATH);
-        dataVO.setResidAllPath(ConsUtil.RESIDALLPATH);
+        dataVO.setFilePath(ConsUtil.getFilepath());
+        dataVO.setResidAllPath(ConsUtil.getResidallpath());
         dataVO.setResidRule(residRule);
         dataVO.setFileName(fileName);
         return dataVO;

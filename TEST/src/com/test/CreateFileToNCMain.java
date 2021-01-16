@@ -25,6 +25,11 @@ public class CreateFileToNCMain {
         System.out.println("================================开始！");
         CreateFile();
         System.out.println("=================================结束！");
+       /* System.out.println("================================开始！");
+        String filePath="E:\\yonyouResource\\Version\\develop1.0\\新建文件夹\\HR_HRWA";
+        String newFilePath="E:\\yonyouResource\\Version\\develop1.0\\新建文件夹\\test";
+        DB2File.createDB2File(filePath, newFilePath);
+        System.out.println("=================================结束！");*/
     }
 
     /**

@@ -343,9 +343,9 @@ public class CreateBmfUtil {
             attribute.addAttribute("dbtype", "char");
             attribute.addAttribute("typeDisplayName", "UFBoolean");
             attribute.addAttribute("typeName", "UFBoolean");
-        }else if ("Integer".equals(bodyVO.getFieldType())) {
+        }else if ("Integer".equals(bodyVO.getFieldType()) || "int".equals(bodyVO.getFieldType())) {
             attribute.addAttribute("dataType", "BS000010000100001004");
-            attribute.addAttribute("fieldType", "int");
+            attribute.addAttribute("fieldType", "decimal");
             attribute.addAttribute("dbtype", "int");
             attribute.addAttribute("typeDisplayName", "Integer");
             attribute.addAttribute("typeName", "Integer");

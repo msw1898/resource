@@ -25,8 +25,11 @@ public class CreateClassUtil {
         content.append("package "+dataVO.getParentVO().getPackagePath()+";\r\n");
         content.append("public class "+dataVO.getParentVO().getClassName()+" extends PsnTaxDeclareVO {\r\n");
         content.append("private static final long serialVersionUID = 1L;\r\n");
+        // 表名
+        content.append(" /** " + dataVO.getParentVO().getTableDisplayName() + " */\r\n");
         content.append("private static final String _TABLE_NAME = \"" + dataVO.getParentVO().getTableName() + "\";\r\n");
         for (BodyVO fileInfo : dataVO.getBodyVOs()) {
+            // 不生成vo字段
             if("N".equals(fileInfo.getIsCreateField())){
                 continue;
             }
@@ -98,9 +101,9 @@ public class CreateClassUtil {
     }
 
     /**
+     *
      * @param content
      * @param fileInfo
-     * @param method
      */
     public static void createFieldsetSetMethod(StringBuffer content, BodyVO fileInfo) {
         String method = getMethod(fileInfo);
@@ -110,9 +113,9 @@ public class CreateClassUtil {
     }
 
     /**
+     *
      * @param content
      * @param fileInfo
-     * @param method
      */
     public static void createFieldsetGetMethod(StringBuffer content, BodyVO fileInfo) {
         String method = getMethod(fileInfo);

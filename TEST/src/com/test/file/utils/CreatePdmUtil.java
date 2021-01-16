@@ -79,12 +79,12 @@ public class CreatePdmUtil {
             pdm.append("<a:Modifier>Administrator</a:Modifier>\r\n");
             if(dataVO.getParentVO().getTablePk().equals(vo.getFieldCode())||"modifiedtime".equals(vo.getFieldCode())||"creationtime".equals(vo.getFieldCode())){
                 pdm.append("<a:DataType>char("+vo.getLength()+")</a:DataType>\r\n");
-            }if("Integer".equals(vo.getFieldType())){
-                pdm.append("<a:DataType>smallint</a:DataType>\r\n");
+            }if("Integer".equals(vo.getFieldType()) || "int".equals(vo.getFieldType())){
+                pdm.append("<a:DataType>decimal(31,8)</a:DataType>\r\n");
             }if("UFBoolean".equals(vo.getFieldType())){
                 pdm.append("<a:DataType>char(1)</a:DataType>\r\n");
             }else{
-                pdm.append("<a:DataType>nvarchar("+vo.getLength()+")</a:DataType>\r\n");
+                pdm.append("<a:DataType>varchar("+vo.getLength()+")</a:DataType>\r\n");
             }
             pdm.append("<a:Length>"+vo.getLength()+"</a:Length>\r\n");
             if("N".equals(vo.getIsNull())) {
@@ -111,9 +111,9 @@ public class CreatePdmUtil {
         pdm.append("<a:Name>"+dataVO.getParentVO().getTablePk()+"</a:Name>\r\n");
         pdm.append("<a:Code>"+dataVO.getParentVO().getTablePk()+"</a:Code>\r\n");
         pdm.append("<a:CreationDate>"+createTime+"</a:CreationDate>\r\n");
-        pdm.append("<a:Creator>msw</a:Creator>\r\n");
+        pdm.append("<a:Creator>Administrator</a:Creator>\r\n");
         pdm.append("<a:ModificationDate>"+createTime+"</a:ModificationDate>\r\n");
-        pdm.append("<a:Modifier>msw</a:Modifier>\r\n");
+        pdm.append("<a:Modifier>Administrator</a:Modifier>\r\n");
         pdm.append("<a:ConstraintName>"+dataVO.getParentVO().getTablePk()+"</a:ConstraintName>\r\n");
         pdm.append("<c:Key.Columns>\r\n");
         pdm.append("<o:Column Ref=\"o"+primaryKeyNum+"\"/>\r\n");

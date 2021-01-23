@@ -22,6 +22,7 @@ public class CreateFileToNCMain {
     public static void main(String[] args) throws IOException {
         ConsUtil.setFilepath(FILEPATH);
         ConsUtil.setResidallpath(RESIDALLPATH);
+        ConsUtil.setLineBreak("\r\n");
         System.out.println("================================¿ªÊ¼£¡");
         CreateFile();
         System.out.println("=================================½áÊø£¡");

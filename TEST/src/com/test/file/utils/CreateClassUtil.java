@@ -22,26 +22,26 @@ public class CreateClassUtil {
             return;
         }
         StringBuffer content = new StringBuffer();
-        content.append("package "+dataVO.getParentVO().getPackagePath()+";\r\n");
-        content.append("public class "+dataVO.getParentVO().getClassName()+" extends PsnTaxDeclareVO {\r\n");
-        content.append("private static final long serialVersionUID = 1L;\r\n");
+        content.append("package "+dataVO.getParentVO().getPackagePath()+";"+ConsUtil.getLineBreak());
+        content.append("public class "+dataVO.getParentVO().getClassName()+" extends PsnTaxDeclareVO {"+ConsUtil.getLineBreak());
+        content.append("private static final long serialVersionUID = 1L;"+ConsUtil.getLineBreak());
         // 表名
-        content.append(" /** " + dataVO.getParentVO().getTableDisplayName() + " */\r\n");
-        content.append("private static final String _TABLE_NAME = \"" + dataVO.getParentVO().getTableName() + "\";\r\n");
+        content.append(" /** " + dataVO.getParentVO().getTableDisplayName() + " */"+ConsUtil.getLineBreak());
+        content.append("private static final String _TABLE_NAME = \"" + dataVO.getParentVO().getTableName() + "\";"+ConsUtil.getLineBreak());
         for (BodyVO fileInfo : dataVO.getBodyVOs()) {
             // 不生成vo字段
             if("N".equals(fileInfo.getIsCreateField())){
                 continue;
             }
-            content.append(" /** " + fileInfo.getFieldName() + " */\r\n");
-            content.append("private " + fileInfo.getFieldType() + " " + fileInfo.getFieldCode() + ";\r\n");
+            content.append(" /** " + fileInfo.getFieldName() + " */"+ConsUtil.getLineBreak());
+            content.append("private " + fileInfo.getFieldType() + " " + fileInfo.getFieldCode() + ";"+ConsUtil.getLineBreak());
         }
         for (BodyVO fileInfo : dataVO.getBodyVOs()) {
             if("N".equals(fileInfo.getIsCreateField())){
                 continue;
             }
-            content.append(" /** " + fileInfo.getFieldName() + " */\r\n");
-            content.append(" public static final String " + fileInfo.getFieldCode().toUpperCase() + "=\"" + fileInfo.getFieldCode() + "\";\r\n");
+            content.append(" /** " + fileInfo.getFieldName() + " */"+ConsUtil.getLineBreak());
+            content.append(" public static final String " + fileInfo.getFieldCode().toUpperCase() + "=\"" + fileInfo.getFieldCode() + "\";"+ConsUtil.getLineBreak());
         }
         for (BodyVO fileInfo : dataVO.getBodyVOs()) {
             if("N".equals(fileInfo.getIsCreateField())||StringUtils.isBlank(fileInfo.getFieldName())){
@@ -107,9 +107,9 @@ public class CreateClassUtil {
      */
     public static void createFieldsetSetMethod(StringBuffer content, BodyVO fileInfo) {
         String method = getMethod(fileInfo);
-        content.append("public void set" + method + "(" + fileInfo.getFieldType()+ " " + fileInfo.getFieldCode() + "){\r\n");
-        content.append("\t this." + fileInfo.getFieldCode() + "=" + fileInfo.getFieldCode() + ";\r\n");
-        content.append("}\r\n");
+        content.append("public void set" + method + "(" + fileInfo.getFieldType()+ " " + fileInfo.getFieldCode() + "){"+ConsUtil.getLineBreak());
+        content.append("\t this." + fileInfo.getFieldCode() + "=" + fileInfo.getFieldCode() + ";"+ConsUtil.getLineBreak());
+        content.append("}"+ConsUtil.getLineBreak());
     }
 
     /**
@@ -119,8 +119,8 @@ public class CreateClassUtil {
      */
     public static void createFieldsetGetMethod(StringBuffer content, BodyVO fileInfo) {
         String method = getMethod(fileInfo);
-        content.append("public " + fileInfo.getFieldType() + " get" + method + "(){\r\n");
-        content.append("\t return " + fileInfo.getFieldCode() + ";\r\n");
+        content.append("public " + fileInfo.getFieldType() + " get" + method + "(){"+ConsUtil.getLineBreak());
+        content.append("\t return " + fileInfo.getFieldCode() + ";"+ConsUtil.getLineBreak());
         content.append("}\r\n");
     }
 
@@ -137,19 +137,19 @@ public class CreateClassUtil {
      * @param content
      */
     public static void setDefaultTableName(StringBuffer content) {
-        content.append("public String getDefaultTableName(){\r\n");
-        content.append("\t return _TABLE_NAME;\r\n");
-        content.append("}\r\n");
+        content.append("public String getDefaultTableName(){"+ConsUtil.getLineBreak());
+        content.append("\t return _TABLE_NAME;"+ConsUtil.getLineBreak());
+        content.append("}"+ConsUtil.getLineBreak());
     }
 
     /**
      * @param content
      */
     public static void setTableName(StringBuffer content) {
-        content.append("@Override \r\n");
-        content.append("public String getTableName(){\r\n");
-        content.append("\t return _TABLE_NAME;\r\n");
-        content.append("}\r\n");
+        content.append("@Override "+ConsUtil.getLineBreak());
+        content.append("public String getTableName(){"+ConsUtil.getLineBreak());
+        content.append("\t return _TABLE_NAME;"+ConsUtil.getLineBreak());
+        content.append("}"+ConsUtil.getLineBreak());
     }
 
     /**
@@ -157,9 +157,9 @@ public class CreateClassUtil {
      * @param pk
      */
     public static void setPKFieldName(StringBuffer content, String pk) {
-        content.append("@Override \r\n");
-        content.append("public String getPKFieldName(){\r\n");
-        content.append("\t return \"" + pk + "\";\r\n");
-        content.append("}\r\n");
+        content.append("@Override "+ConsUtil.getLineBreak());
+        content.append("public String getPKFieldName(){"+ConsUtil.getLineBreak());
+        content.append("\t return \"" + pk + "\";"+ConsUtil.getLineBreak());
+        content.append("}"+ConsUtil.getLineBreak());
     }
 }

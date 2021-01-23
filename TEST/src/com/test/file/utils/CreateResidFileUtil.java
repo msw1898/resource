@@ -96,8 +96,9 @@ public class CreateResidFileUtil {
             file.createNewFile();
         }
         BufferedWriter fileWritter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(dataVO.getResidAllPath(), true), ConsUtil.UTF_16));
+        //fileWritter.write(ConsUtil.getLineBreak());
         for (String str : keyList) {
-            String content = dataVO.getAppendResidFileMap().get(str) + "=" + str + "\r\n";
+            String content = dataVO.getAppendResidFileMap().get(str).trim() + "=" + str +ConsUtil.getLineBreak();
             fileWritter.write(content);
         }
         fileWritter.close();

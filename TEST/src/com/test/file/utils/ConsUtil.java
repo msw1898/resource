@@ -11,6 +11,10 @@ public class ConsUtil {
     public static String KEYWORD = "Òì³£´íÎó";
     public static String CHARSET = "UTF-8";
     public static String UTF_16 = "utf-16";
+    /**
+     * »»ÐÐ·û
+     */
+    private static String lineBreak;
     /***/
     private static String filepath;
     /***/
@@ -30,5 +34,13 @@ public class ConsUtil {
 
     public static void setResidallpath(String residallpath) {
         ConsUtil.residallpath = residallpath;
+    }
+
+    public static String getLineBreak() {
+        return lineBreak;
+    }
+
+    public static void setLineBreak(String lineBreak) {
+        ConsUtil.lineBreak = lineBreak;
     }
 }
